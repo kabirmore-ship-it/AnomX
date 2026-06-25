@@ -15,8 +15,8 @@ A project to detect suspicious and fraudulent behaviour in a synthetic financial
 
 ## Project Overview
 
-AnomX is an anomaly detection system designed for a simulated forex and crypto trading platform. The platform generates thousands of user events — logins, trades, deposits, withdrawals, session activity, and KYC updates some of which are intentionally injected with anomalous patterns that mirror real-world financial fraud.
-
+AnomX is a project I built to simulate and detect fraudulent behaviour in a fake trading platform. Users generate events like logins, trades, 
+deposits and withdrawals — and some of those users are secretly doing suspicious things like laundering money or using bots. 
 The core objectives of this project are:
 
 - Generate realistic synthetic event data with labelled anomalies.
@@ -42,7 +42,7 @@ This project helped me practice:
 ## Python, Git & Foundations
 ### Development Foundations
 
-The first stage of the project focused on refreshing Python, Pandas, NumPy, and Git workflows that would later be used throughout the pipeline.
+The first stage of the project focused on refreshing Python, Pandas, NumPy, and Git workflows that would later be used throughout the project.
 
 Key areas covered:
 
@@ -50,8 +50,6 @@ Key areas covered:
 - Pandas and NumPy operations
 - Git and GitHub workflows
 - Repository organisation and documentation
-
-These skills were then applied to the event generation and feature engineering components of the project.
 
 ## Event Generation
 
