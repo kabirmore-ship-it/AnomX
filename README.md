@@ -192,19 +192,31 @@ Z-scores are computed per-user, meaning the model learns what is normal *for tha
 
 ### Feature Engineering Approach
 
-The objective of feature engineering was to convert raw event logs into behavioural signals that can be used by anomaly detection models.
+The objective of feature engineering was to convert raw event logs into behavioural signals usable by anomaly detection models.
 
 Rather than relying on individual events, many features were designed to capture patterns across time. Examples include rolling statistics, event burst counts, login behaviour trends, and transaction ratios.
 
-Several features are calculated relative to each user's own historical behaviour. This helps identify unusual activity for a specific user rather than comparing everyone against a single global baseline.
+Several features are calculated based on each user's historical behaviour. This helps identify unusual activity for a specific user rather than comparing everyone against a single global baseline.
 
 The resulting feature set is designed to make fraud patterns more distinguishable while remaining realistic enough to reflect how monitoring systems operate in production environments.
 
 ### Exploratory Data Analysis (EDA)
 
+Example Generated Events
+
+The generated dataset contains a mixture of login, trading, session, deposit, withdrawal, and KYC-related events. Each event type populates a different subset of fields depending on the activity being recorded.
+
+Example records from the raw dataset:
+
+EVT_183607,USER_0491,login,2024-03-29 20:36:37,20,4,0,0,none,10.118.233.1,AE,android_app,1.0,0.0,0.0,,,,,,,,,,,,,,,,138
+EVT_603409,USER_0313,trade,2024-03-29 20:42:12,20,4,0,0,none,,,,,,,GBPUSD,1.78,15301.37,5.75,3422.56,986.0,1.062,1.0,,,,,,,,189
+EVT_346891,USER_0472,session,2024-03-29 20:44:04,20,4,0,0,none,,,firefox_linux,,,,,,,,,,,,,,,19.4,68.0,3.51,,189
+EVT_313795,USER_0038,deposit,2024-03-29 20:49:10,20,4,0,0,none,,,,,,,,,,,,,,,208.62,bank,0.0,,,,,239
+EVT_940912,USER_0447,login,2024-03-29 20:49:58,20,4,0,0,none,10.75.51.1,US,firefox_l
+
 Key observations from the generated and processed dataset:
 
-- **Class imbalance is significant**: anomalous events make up a minority of the dataset, consistent with real fraud rates. Any model trained on this data must account for this through class weighting, oversampling (SMOTE), or threshold tuning.
+- **Class imbalance is significant**: anomalous events make up a minority of the dataset, consistent with real fraud rates. Any model trained on this data must account for this by using class weighting, oversampling (e.g., SMOTE), or threshold tuning.
 
 - **Anomaly patterns cluster in feature space**: `bot_trader` events show `click_rate_per_min` values two orders of magnitude above normal users. `wash_trader` events have `trade_volume_vs_baseline` of 10–20x. These separations confirm the features capture the intended signals.
 
