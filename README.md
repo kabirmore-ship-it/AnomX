@@ -203,14 +203,6 @@ Example Generated Events
 
 The generated dataset contains a mixture of login, trading, session, deposit, withdrawal, and KYC-related events. Each event type populates a different subset of fields depending on the activity being recorded.
 
-Example records from the raw dataset:
-
-EVT_183607,USER_0491,login,2024-03-29 20:36:37,20,4,0,0,none,10.118.233.1,AE,android_app,1.0,0.0,0.0,,,,,,,,,,,,,,,,138
-EVT_603409,USER_0313,trade,2024-03-29 20:42:12,20,4,0,0,none,,,,,,,GBPUSD,1.78,15301.37,5.75,3422.56,986.0,1.062,1.0,,,,,,,,189
-EVT_346891,USER_0472,session,2024-03-29 20:44:04,20,4,0,0,none,,,firefox_linux,,,,,,,,,,,,,,,19.4,68.0,3.51,,189
-EVT_313795,USER_0038,deposit,2024-03-29 20:49:10,20,4,0,0,none,,,,,,,,,,,,,,,208.62,bank,0.0,,,,,239
-EVT_940912,USER_0447,login,2024-03-29 20:49:58,20,4,0,0,none,10.75.51.1,US,firefox_l
-
 Key observations from the generated and processed dataset:
 
 - **Class imbalance is significant**: anomalous events make up a minority of the dataset, consistent with real fraud rates. Any model trained on this data must account for this by using class weighting, oversampling (e.g., SMOTE), or threshold tuning.
