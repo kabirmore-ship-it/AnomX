@@ -7,11 +7,10 @@ A project to detect suspicious and fraudulent behaviour in a synthetic financial
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-- [Week 1–2: Python, Git & Foundations](#week-12-python-git--foundations)
-- [Week 3: Event Generation](#week-3-event-generation)
-- [Week 4: Feature Engineering & EDA](#week-4-feature-engineering--eda)
+- [Python, Git & Foundations](#python-git--foundations)
+- [Event Generation](#event-generation)
+- [Feature Engineering & EDA](#feature-engineering--eda)
 - [Repository Structure](#repository-structure)
-
 ---
 
 ## Project Overview
