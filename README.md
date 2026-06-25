@@ -16,30 +16,31 @@ A project to detect suspicious and fraudulent behaviour in a synthetic financial
 
 ## Project Overview
 
-AnomX is an end-to-end anomaly detection system designed for a simulated forex and crypto trading platform. The platform generates thousands of user events — logins, trades, deposits, withdrawals, session activity, and KYC updates — some of which are intentionally injected with anomalous patterns that mirror real-world financial fraud.
+AnomX is an anomaly detection system designed for a simulated forex and crypto trading platform. The platform generates thousands of user events — logins, trades, deposits, withdrawals, session activity, and KYC updates some of which are intentionally injected with anomalous patterns that mirror real-world financial fraud.
 
 The core objectives of this project are:
 
-- Generate realistic synthetic event data with labelled anomalies
-- Engineer features from raw event logs that make anomalies detectable by machine learning models
-- Build a foundation for training and evaluating anomaly detection classifiers
+- Generate realistic synthetic event data with labelled anomalies.
+- Engineer features from raw event logs that make anomalies detectable by machine learning models.
+- Build a foundation for training and evaluating anomaly detection classifiers.
 
 This project mirrors challenges faced by compliance and fraud teams at real financial institutions, where suspicious behaviour must be identified quickly and accurately across large volumes of transactional data.
 
 ---
 
 ## Week 1–2: Python, Git & Foundations
+### Development Foundations
 
-### Python Basics
+The first stage of the project focused on refreshing Python, Pandas, NumPy, and Git workflows that would later be used throughout the pipeline.
 
-During the first two weeks, core Python concepts were reviewed and applied, including:
+Key areas covered:
 
-- Data types, control flow, and functions
-- List comprehensions and lambda expressions
-- Object-oriented thinking for structuring data pipelines
-- Working with standard library modules such as `random`, `datetime`, and `pathlib`
+- Python scripting and data processing
+- Pandas and NumPy operations
+- Git and GitHub workflows
+- Repository organisation and documentation
 
-These fundamentals are directly applied throughout the project — for example, using `timedelta` arithmetic to compute event gaps, and `random.choices()` with probability weights to simulate realistic event distributions.
+These skills were then applied to the event generation and feature engineering components of the project.
 
 ### Git & GitHub Workflow
 
@@ -63,28 +64,16 @@ Key skills developed:
 
 These skills are the backbone of both the data generation and feature engineering scripts.
 
-### Understanding Anomaly Detection
+### Why I chose this project
 
-Anomaly detection is the task of identifying observations that deviate significantly from expected behaviour. In financial systems, this is critical for catching:
+I wanted to work on a project that involved more than just training a machine learning model. In real-world fraud detection, the hardest part is often generating meaningful signals from noisy event data.
 
-- Account takeovers (unusual login patterns)
-- Market manipulation (wash trading, latency arbitrage)
-- Money laundering (deposit-withdrawal cycling, structuring)
-- Bot activity (inhuman click rates)
-- Identity fraud (KYC manipulation before large withdrawals)
+This project helped me practice:
 
-A key insight is that anomalies are rare by design — most users behave normally. This class imbalance must be accounted for when building and evaluating models.
-
-### Documentation Practices
-
-Good documentation was practised throughout, including:
-
-- Inline comments explaining non-obvious logic
-- Docstrings on every function describing its purpose and key output signals
-- A `configs/config.yaml` file to centralise all hyperparameters (seed, user count, file paths, rolling windows) rather than hardcoding them
-- This README as the single source of truth for project understanding
-
----
+- Designing realistic datasets
+- Creating behavioural features from user activity
+- Working with time-series event logs
+- Thinking about fraud detection from a business perspective
 
 ## Week 3: Event Generation
 
