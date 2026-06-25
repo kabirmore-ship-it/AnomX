@@ -28,7 +28,19 @@ This project mirrors challenges faced by compliance and fraud teams at real fina
 
 ---
 
-## Week 1–2: Python, Git & Foundations
+### Why I chose this project
+
+I wanted to work on a project that involved more than just training a machine learning model. In real-world fraud detection, the hardest part is often generating meaningful signals from noisy event data.
+
+This project helped me practice:
+
+- Designing realistic datasets
+- Creating behavioural features from user activity
+- Working with time-series event logs
+- Thinking about fraud detection from a business perspective
+
+
+## Python, Git & Foundations
 ### Development Foundations
 
 The first stage of the project focused on refreshing Python, Pandas, NumPy, and Git workflows that would later be used throughout the pipeline.
@@ -42,40 +54,7 @@ Key areas covered:
 
 These skills were then applied to the event generation and feature engineering components of the project.
 
-### Git & GitHub Workflow
-
-Version control was set up using Git and GitHub with the following practices:
-
-- Initialising a repository and maintaining a meaningful commit history
-- Using branches for feature development and merging via pull requests
-- Writing descriptive commit messages that explain what changed and why
-- Keeping the repository organised with a clear folder structure
-
-A consistent commit history demonstrates how the project evolved week by week, from initial setup through data generation and feature engineering.
-
-### Pandas and NumPy Basics
-
-Key skills developed:
-
-- Creating, filtering, and transforming DataFrames with `pandas`
-- Performing vectorised numerical operations with `numpy`
-- Using `groupby`, `rolling`, `merge`, and `apply` for complex data transformations
-- Handling missing values and type conversions in real-world-style datasets
-
-These skills are the backbone of both the data generation and feature engineering scripts.
-
-### Why I chose this project
-
-I wanted to work on a project that involved more than just training a machine learning model. In real-world fraud detection, the hardest part is often generating meaningful signals from noisy event data.
-
-This project helped me practice:
-
-- Designing realistic datasets
-- Creating behavioural features from user activity
-- Working with time-series event logs
-- Thinking about fraud detection from a business perspective
-
-## Week 3: Event Generation
+## Event Generation
 
 ### How Synthetic Event Data Was Generated
 
@@ -148,7 +127,7 @@ A notable design choice is that several signals are pre-computed at generation t
 
 ---
 
-## Week 4: Feature Engineering & EDA
+## Feature Engineering & EDA
 
 ### Features Created from Raw Event Logs
 
@@ -211,14 +190,15 @@ These features directly target `ip_hopper`, `device_switcher`, and `brute_forcer
 
 Z-scores are computed per-user, meaning the model learns what is normal *for that individual*, not for the population. This is essential for catching anomalies that would look normal at a platform level.
 
-### Why These Features Are Useful for Anomaly Detection
+### Feature Engineering Approach
 
-Raw event logs contain categorical and temporal data that models cannot directly interpret. Feature engineering translates domain knowledge into numeric signals that expose the mechanics of each fraud pattern:
+The objective of feature engineering was to convert raw event logs into behavioural signals that can be used by anomaly detection models.
 
-- **Rolling windows** capture behaviour trends — a single unusual trade could be noise; ten consecutive winning ultra-fast trades are a pattern.
-- **Burst counts** expose timing attacks that are invisible when looking at individual events in isolation.
-- **Per-user z-scores** personalise the baseline — a £50,000 withdrawal is normal for one user and an emergency flag for another.
-- **Ratio features** encode relationships between event types — the deposit-to-withdrawal ratio only becomes meaningful when viewed across a sequence of financial events.
+Rather than relying on individual events, many features were designed to capture patterns across time. Examples include rolling statistics, event burst counts, login behaviour trends, and transaction ratios.
+
+Several features are calculated relative to each user's own historical behaviour. This helps identify unusual activity for a specific user rather than comparing everyone against a single global baseline.
+
+The resulting feature set is designed to make fraud patterns more distinguishable while remaining realistic enough to reflect how monitoring systems operate in production environments.
 
 ### Exploratory Data Analysis (EDA)
 
@@ -234,12 +214,18 @@ Key observations from the generated and processed dataset:
 
 - **Structurers are subtle**: amounts between 490 and 999 overlap with normal small deposits. This pattern is only detectable in aggregate — looking at the distribution of a single user's deposit amounts over time, not at individual events.
 
-### Key Observations and Learnings
+### Challenges and Lessons Learned
 
-- Feature engineering is where domain knowledge matters most. The same raw data can produce useless or highly discriminative features depending on how well the engineer understands the fraud patterns they are targeting.
-- Events cannot always be treated independently. The most powerful signals (deposit-withdrawal ratio, rolling PnL, burst counts) require looking at sequences and history, not single rows.
-- Synthetic data generation requires careful thought about what "normal" looks like before designing anomalies — the contrast between the two is what makes detection possible.
-- Proper seed control (`random_seed` in config) and centralised configuration make experiments reproducible and easy to re-run with different parameters.
+A major challenge was designing realistic normal behaviour before introducing anomalies. If fraudulent behaviour is too obvious, the dataset becomes less useful for evaluating detection methods.
+
+Some key lessons from the project include:
+
+- Behavioural patterns are often more informative than individual events.
+- Feature engineering can have a larger impact on detection quality than model selection.
+- Fraud detection frequently requires analysing sequences of events rather than isolated records.
+- Centralised configuration and reproducible random seeds make experimentation significantly easier.
+
+One interesting observation was that some fraud patterns, such as bot activity and wash trading, became highly separable after feature engineering, while others, such as structuring behaviour, remained difficult to identify without examining user history over longer periods.
 
 ---
 
