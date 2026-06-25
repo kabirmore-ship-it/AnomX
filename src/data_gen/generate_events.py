@@ -22,8 +22,8 @@ np.random.seed(SEED)
 random.seed(SEED)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-INSTRUMENTS = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSD", "USDCHF", "AUDUSD"]
-COUNTRIES   = ["IN", "US", "UK", "SG", "AE", "NG", "RU", "CN", "DE", "BR"]
+INSTRUMENTS = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSD", "USDCHF", "AUDUSD", "ETHUSD"]
+COUNTRIES   = ["IN", "US", "UK", "SG", "AE", "NG", "RU", "CN", "DE", "BR", "JP", "FR"]
 DEVICES     = ["chrome_win", "safari_mac", "android_app", "ios_app", "firefox_linux"]
 EVENT_TYPES = ["login", "trade", "deposit", "withdrawal", "session", "kyc_change"]
 EVENT_WEIGHTS = [0.22, 0.35, 0.15, 0.10, 0.12, 0.06]
@@ -32,7 +32,7 @@ EVENT_WEIGHTS = [0.22, 0.35, 0.15, 0.10, 0.12, 0.06]
 COUNTRY_TIMEZONES = {
     "IN": 5.5, "US": -5, "UK": 0, "SG": 8,
     "AE": 4,   "NG": 1,  "RU": 3, "CN": 8,
-    "DE": 1,   "BR": -3
+    "DE": 1,   "BR": -3, "JP": 9, "FR": 1
 }
 
 ANOMALY_TYPES = [
